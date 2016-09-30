@@ -9,6 +9,7 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://astronomer-sheila-38188.netlify.com/" # the base hostname & protocol for your site
 twitter_username: cloudsoren
 github_username:  sorenh
+fbapp_id: 1872714046294613
 
 # Build settings
 markdown: kramdown
