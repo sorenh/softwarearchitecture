@@ -4,8 +4,8 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+**{{ site.title }}** is series of articles about building software that will survive the harsh environment known as "The Real World". There are plenty of computer science text books on the subject, but this is meant as a practical resource, sprinkled with references to more actual text books, if you feel like you want more detail.
 
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
+You will also find commentary on news articles, etc.
 
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+I hope this will become a valuable resource to developers of all levels of experience. I'll need help finding a level of detail that works across the board, so please leave comments!
