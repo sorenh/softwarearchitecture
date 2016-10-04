@@ -8,6 +8,7 @@ url: "http://www.scalablesoftwarearchitecture.com" # the base hostname & protoco
 twitter_username: cloudsoren
 github_username:  sorenh
 fbapp_id: 1872714046294613
+google_analytics_id: UA-85166462-1
 
 # Build settings
 markdown: kramdown
