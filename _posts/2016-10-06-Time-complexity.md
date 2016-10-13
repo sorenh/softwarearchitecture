@@ -10,11 +10,13 @@ tags:
 ---
 This series is meant to be focused on practice, not so much on computer science theory. Time complexity and big-O notation are topics that typically get very theoretical, but I'll do my best to keep it down to Earth.
 
+# The stuff they teach in school
+
 The "time complexity" of an algorithm tells us how much time will be spent solving a given problem. In particular, it helps us understand how much time will be spent solving a given problem as the input grows very large.
 
-If you go through an array/list and perform some operation on each elements, it will take longer if you add more elements ot the array/list. If each element takes 1 second to process, and there are 10 elements, it'll take a total of 10 seconds. Add another 5 elements, and it'll take 15.
+If you go through an array/list and perform some operation on each elements, it will take longer if you add more elements ot the array/list. If each element takes 1 second to process, and there are 10 elements, it'll take a total of 10 seconds. Add another 5 elements and it'll take 15. Simple.
 
-If you took a faster computer and did the same thing there, it might only take 0.5 seconds per element. When dealing with time complexity, we try to ignore this difference, so we just say that the time it takes depends on the number of elements. Let's call the number of elements "*n*". The simple loop we have (going through each element and performing a simple operation it) is said to be O(n).
+If you took a faster computer and did the same thing there, it might only take 0.5 seconds per element. When dealing with time complexity, we try to ignore this difference, so we just say that the time it takes depends on the number of elements. Let's call the number of elements "*n*". The simple loop we have (going through each element and performing a simple operation it) is said to be O(n) ("big Oh of n", if you were to read it out loud).
 
 Let's take another example.
 
@@ -44,13 +46,37 @@ Let's try to optimise this a little bit. Let's imagine that the elements are lar
                 return True
     return False
 
-So the first step involves going through a list and performing an operation (md5sum) on each element. We saw earlier that this is O(n).
+So the first step involves going through a list and performing an operation (md5sum) on each element. We saw earlier that applying an operation to each element in a list is O(n).
 
-The next step is our terrible comparison algorithm, which we saw was O(n²). The new, combined algorithm is *O(n+n²)*, but when we're using this notation, we discard the *n*, because as *n* grows, *n²* will grow much faster, and that's the only thing that matters. So you basically discard all but the worst element and we end up with an algorithm that is *O(n²)*.
+The next step is our terrible comparison algorithm, which we saw was O(n²). The new, combined algorithm is *O(n+n²)*, but when we're using this notation, we discard the *n*, because as *n* grows, *n²* will grow much faster than *n*, and that's the only thing that matters. You basically discard all but the worst element and we end up with an algorithm that is *O(n²)*.
 
-## I already studied time complexity, why are you wasting my time here?
+You'll typically end up with one of these (in order of increasing terribleness):
 
-Some of you may have already heard about all of this in school. And, from a mathematical and computer science standpoint, it makes sense.
+* O(1) - Constant time.
+* O(log n) - Logarithmic time.
+* O(n) - Linear time.
+* O(n log n) - "Linearithmetic" time.
+* O(n²) - Quadratic time.
+* O(n!) - Factorial time.
+
+Wikipedia has a [much more complete list](https://en.wikipedia.org/wiki/Time_complexity#Table_of_common_time_complexities), if you're interested.
+
+## Data types
+
+We also consider time complexity when choosing data types. The right choice of data type depends on what you want to do with your data. If you're going to be doing a lot of lookups, you want to choose a data type that is optimised for that, like a hash map. If you just want to collect a bunch of objects and then do something with them later, a simple list or array will do fine.
+
+Here are the time complexities of some of the most common operations on some of the most common data types:
+
+| Data type   | Access   | Search   | Insert   |
+| ------------|----------|----------|----------|
+| Array       | O(1)     | O(n)     | O(n)     |
+| Linked list | O(n)     | O(n)     | O(1)     |
+| Hash table  |   -      | O(1)     | O(1)     |
+| Binary tree | O(log n) | O(log n) | O(log n) |
+
+# What they don't teach in school
+
+Computer science is a theoretical discipline and from a theoretical, mathematical perspective, it makes perfect sense to look at the efficiency of an algorithm in this way.
 
 However, this site is not about computer science. It's about practical, scalable, software architecture.
 
@@ -66,11 +92,11 @@ Ok.
 
 How does md5sum work? We don't have to go into much detail, but it's obvious that md5sum also goes through the whole file in order to reduce it to a 128 bit hash.
 
-So what if we have 5 files, each 100 GB in size. Very, very different files. In fact, they're so different that the simple comparison would never need to move past the first 5 bytes to determine that they're not the same.
+So what if we have 5 files, each 100 GB in size? Very, very different files. In fact, they're so different that the simple comparison would never need to move past the first 5 bytes to determine that they're not the same.
 
 We'd have 5 runs of md5sum on some very large files. This could take 5 minutes a piece. That's 25 minutes. Then you'd make 5² = 25 very fast comparisons. Let's say they each take 1ms. That's 25 ms. According to the time complexity analysis (in particular the big-O notation), the first part of the algorithm doesn't even get counted, but at this input size, it clearly matters.
 
-Let's see what the numbers look like for 1,000 files. It would take 5,000 minutes  to perform the md5sum. That's three and a half days. The comparisons would take 1,000² ms = 1000 seconds. That's around 15 minutes.
+Let's see what the numbers look like for 1,000 files. It would take 5,000 minutes to perform the md5sum. That's three and a half days. The comparisons would take 1,000² ms = 1000 seconds. That's around 15 minutes. Still, the part that "doesn't matter" takes the most time. By far.
 
 What about 10,000 files? 50,000 minutes for md5sum (35 days), 10,000² ms (1.1 days) for the comparison.
 
