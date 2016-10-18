@@ -9,6 +9,7 @@ twitter_username: cloudsoren
 github_username:  sorenh
 fbapp_id: 1872714046294613
 google_analytics_id: UA-85166462-1
+github_url: https://github.com/sorenh/softwarearchitecture
 
 # Build settings
 markdown: kramdown
